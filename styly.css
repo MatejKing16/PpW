@@ -1,0 +1,39 @@
+/* Společný soubor se styly pro index.html i o-mne.html */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f9;
+  color: #222222;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Prvek 1: nadpisy h1 (v obou souborech) */
+h1 {
+  color: #1a3c6e;
+  text-align: center;
+  border-bottom: 3px solid #1a3c6e;
+  padding-bottom: 10px;
+}
+
+/* Prvek 2: odstavce p (v obou souborech mají dva a více) */
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  background-color: #ffffff;
+  border-left: 5px solid #e07b00;
+  padding: 10px 15px;
+  margin: 15px 0;
+}
+
+/* Prvek 3: odkazy a (navigace mezi stránkami) */
+a {
+  color: #e07b00;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #a35600;
+}
