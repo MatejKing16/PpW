@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANO</title>
+  <link rel="stylesheet" href="styly.css">
+  <style>
+    #kolo-box{position:relative;width:320px;max-width:90vw;margin:20px auto}
+    #kolo{width:100%;height:auto;border-radius:50%;border:6px solid #d6246e;box-shadow:0 6px 20px rgba(214,36,110,.4);transition:transform 5s cubic-bezier(.12,.8,.1,1)}
+    #sipka{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:36px}
+    #vysledek{font-size:22px;font-weight:bold;color:#d6246e;min-height:60px}
+    button.tlacitko{border:none;cursor:pointer;font-family:inherit}
+    button.tlacitko:disabled{opacity:.6;cursor:wait}
+  </style>
+</head>
+<body>
+  <p class="velke srdce">🥰🎉💘</p>
+  <h1>Co budeme dělat?</h1>
+  <p>Vítej, oficiální Valentýnko! Osud rozhodne, kam spolu půjdeme 🎡</p>
+
+  <div id="kolo-box">
+    <div id="sipka">💘</div>
+    <canvas id="kolo" width="400" height="400"></canvas>
+  </div>
+  <button class="tlacitko" id="toc">Roztočit kolo štěstí 🎰</button>
+  <p id="vysledek">Tak šup, zatoč! 👆</p>
+
+  <h2>Tvůj kupón</h2>
+  <div class="kupon">🎟️ <b>Kupón na 1× masáž zad</b><br>platnost: navždy, jen pro Káju 💆‍♀️</div>
+  <div class="kupon">🎟️ <b>Kupón na 1× vítězství ve sporu</b><br>nelze uplatnit u pizzy s ananasem 🍍</div>
+
+  <h2>Kolik tě mám rád?</h2>
+  <p><button class="tlacitko" onclick="pridej()">Přidat lásku ➕</button><br>Láska: <b id="pocet">100</b> % ❤️</p>
+
+  <p><a href="index.html">⬅ Zpátky na začátek</a> | <a href="NE.html">Tajné tlačítko 🤫</a></p>
+
+<script>
+  // Sem si přepiš / přidej vlastní rande:
+  var rande=[
+    {t:'🎬 Kino',   z:'Ty vybíráš film, já nosím popcorn. 🍿'},
+    {t:'☕ Kavárna', z:'Dort si dáš ty, já si ukradnu kousek. 🍰'},
+    {t:'🍝 Večeře',  z:'Hezká restaurace a svíčky. Cringe max. 🕯️'},
+    {t:'🌳 Procházka', z:'Ruku v ruce a zmrzlina na konec. 🍦'},
+    {t:'🎳 Bowling', z:'Vítěz si vybere odměnu. Výhodu dám dobrovolně tobě 😏'},
+    {t:'🍕 Pizza doma', z:'Pyžama, pizza a seriál. Nejlepší plán. 🛋️'}
+  ];
+  var barvy=['#ff4d8d','#ffb3d1','#e8579a','#ffd6e8'];
+  var c=document.getElementById('kolo'), ctx=c.getContext('2d'), R=200, seg=360/rande.length;
+
+  rande.forEach(function(r,i){
+    var a0=i*seg*Math.PI/180, a1=(i+1)*seg*Math.PI/180;
+    ctx.beginPath(); ctx.moveTo(R,R); ctx.arc(R,R,R,a0,a1); ctx.closePath();
+    ctx.fillStyle=barvy[i%barvy.length]; ctx.fill();
+    ctx.strokeStyle='#fff'; ctx.lineWidth=3; ctx.stroke();
+    ctx.save(); ctx.translate(R,R); ctx.rotate((a0+a1)/2);
+    ctx.textAlign='right'; ctx.fillStyle='#5a0a30'; ctx.font='bold 24px sans-serif';
+    ctx.fillText(r.t,R-18,8); ctx.restore();
+  });
+
+  var rot=0, btn=document.getElementById('toc'), vys=document.getElementById('vysledek');
+  btn.onclick=function(){
+    btn.disabled=true; vys.textContent='Osud se rozhoduje... 🥁';
+    rot+=1800+Math.random()*360;
+    c.style.transform='rotate('+rot+'deg)';
+  };
+  c.addEventListener('transitionend',function(){
+    var uhel=(((270-rot)%360)+360)%360;
+    var v=rande[Math.floor(uhel/seg)];
+    vys.innerHTML='Vyšlo: '+v.t+'!<br><small>'+v.z+'</small>';
+    btn.disabled=false; btn.textContent='Roztočit znovu 🔄';
+  });
+
+  var l=100;
+  function pridej(){l+=10;document.getElementById('pocet').textContent=l+(l>200?' (přetékáme 🚨)':'');}
+</script>
+</body>
+</html>

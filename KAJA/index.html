@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KÁJO BUDEŠ MŮJ VALENTÝN?</title>
+  <link rel="stylesheet" href="styly.css">
+</head>
+<body>
+  <p class="velke srdce">💖</p>
+  <h1>KÁJO, BUDEŠ MŮJ VALENTÝN?</h1>
+  <p>Důležitá otázka, na kterou existuje jen jedna správná odpověď 🥺👉👈</p>
+
+  <img class="obr" src="fotky/foto1.jpg" alt="Naše společná fotka" onerror="this.outerHTML='<p class=velke>🐻💕🐰</p>'">
+
+  <p><a class="tlacitko" id="ano" href="ANO.html">ANOOOOO 💘</a></p>
+  <p><a class="tlacitko ne" id="ne" href="NE.html">Ne booo 💔</a></p>
+
+  <h2><img class="obr" src="fotky/smutny.jpg" alt="Smutně koukám" onerror="this.outerHTML='🥺🥺🥺'"></h2>
+  <p id="hlaska">Tlačítko „Ne“ je trochu plaché...</p>
+
+<script>
+  var ne=document.getElementById('ne'), ano=document.getElementById('ano'), hlaska=document.getElementById('hlaska');
+  var texty=['Hele, to nejde stisknout 😏','Ještě jednou a budu smutný 🥺','Tohle tlačítko je rozbité, slibuju','Kájo... prosím?? 🥹','Fajn, ANO je teď tak velké, že ho nemůžeš minout 😎'];
+  var n=0, velikost=20;
+  function utec(){
+    ne.style.position='fixed';
+    ne.style.left=Math.random()*(window.innerWidth-140)+'px';
+    ne.style.top=Math.random()*(window.innerHeight-60)+'px';
+    velikost+=6; ano.style.fontSize=velikost+'px';
+    hlaska.textContent=texty[Math.min(n++,texty.length-1)];
+  }
+  ne.addEventListener('mouseover',utec);
+  ne.addEventListener('touchstart',function(e){e.preventDefault();utec();});
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body{font-family:"Comic Sans MS","Trebuchet MS",Arial,sans-serif;background:linear-gradient(135deg,#ffd6e8,#ffeaf3,#ffd6e8);color:#6b0f3a;margin:0;padding:20px;text-align:center;min-height:100vh}
+h1{color:#d6246e;font-size:2.4em;border-bottom:3px dotted #d6246e;padding-bottom:10px}
+h2{color:#e8579a;border-bottom:2px dashed #e8579a;padding-bottom:5px;margin-top:30px}
+p{font-size:18px;line-height:1.6;background:#fff;border-left:5px solid #ff4d8d;border-radius:12px;padding:10px 15px;margin:15px auto;max-width:600px;box-shadow:0 3px 10px rgba(214,36,110,.15)}
+a{color:#d6246e;font-weight:bold;text-decoration:none}
+a:hover{text-decoration:underline;color:#8f0f46}
+.tlacitko{display:inline-block;background:#ff4d8d;color:#fff;padding:12px 24px;border-radius:30px;margin:8px;font-size:20px;transition:transform .2s}
+.tlacitko:hover{transform:scale(1.1);color:#fff;text-decoration:none}
+.ne{background:#999;position:relative}
+.obr{max-width:260px;width:80%;border-radius:20px;border:5px solid #ff4d8d;margin:10px}
+.velke{font-size:70px;margin:0}
+.srdce{animation:buch 1s infinite}
+@keyframes buch{50%{transform:scale(1.25)}}
+.karta{background:#fff;border-radius:16px;padding:12px;margin:12px auto;max-width:600px;cursor:pointer;box-shadow:0 3px 10px rgba(214,36,110,.2)}
+.skryte{display:none;margin-top:8px;color:#b0165a}
+.kupon{border:3px dashed #d6246e;background:#fff7fb;border-radius:12px;max-width:420px;margin:12px auto;padding:10px}
