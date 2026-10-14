@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadání pro výpočet komolého kužele</title>
+</head>
+<body>
+    <h1>Výpočet komolého kužele</h1>
+    <p>Zadejte průměry obou podstav a výšku komolého kužele:</p>
+
+    <!-- Formulář odesílá zadané hodnoty metodou POST do zpracujícího skriptu vypocet.php -->
+    <form action="vypocet.php" method="post">
+        
+        <!-- První číslo: Průměr dolní podstavy (d1) -->
+        <label for="d1">Průměr první podstavy (d1):</label><br>
+        <input type="number" step="any" id="d1" name="d1" required><br><br>
+
+        <!-- Druhé číslo: Průměr horní podstavy (d2) -->
+        <label for="d2">Průměr druhé podstavy (d2):</label><br>
+        <input type="number" step="any" id="d2" name="d2" required><br><br>
+
+        <!-- Třetí číslo: Výška kužele (h) -->
+        <label for="h">Výška kužele (h):</label><br>
+        <input type="number" step="any" id="h" name="h" required><br><br>
+
+        <!-- Tlačítko pro odeslání dat do PHP -->
+        <input type="submit" value="Vypočítat">
+    </form>
+</body>
+</html>

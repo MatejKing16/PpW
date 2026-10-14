@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- Nastavení jazyka stránky pro prohlížeč a vyhledávače -->
+<html lang="cs">
+    <head>
+        <!-- Kódování UTF-8 zajišťuje, že se správně zobrazí česká diakritika (háčky a čárky) -->
+        <meta charset="UTF-8">
+        <!-- Zajišťuje správné zobrazení a přizpůsobení šířky na mobilních telefonech -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Výpočet komolého kužele</title>
+    </head>
+<body>
+    <h1>Výpočet komolého kužele</h1>
+    <p>Zadejte průměry obou kruhových podstav komolého kužele a jeho výšku. Skript následně vypočítá jeho objem a povrch.</p>
+    
+    <!-- LABEL = Textový popisek, který se díky atributu 'for="d1"' vizuálně a funkčně sváže s inputem 'id="d1"' -->
+    <label for="d1">Průměr první podstavy 1.:</label>
+    <!-- INPUT = Vstupní pole. 'type="number"' zajistí, že nepůjde zadat text, pouze čísla. ID slouží jako unikátní jméno pro JavaScript. -->
+    <input type="number" id="d1" name="d1" required><br><br>
+    
+    <label for="d2">Průměr druhé podstavy 2.:</label>
+    <input type="number" id="d2" name="d2" required><br><br>
+    
+    <label for="h">Výška komolého kužele:</label>
+    <input type="number" id="h" name="h" required><br><br>
+    
+    <!-- BUTTON = Tlačítko. Atribut 'onclick' říká prohlížeči: "Jakmile na mě někdo klikne, najdi a spusť JavaScriptovou funkci s názvem Vypocitej()" -->
+    <button onclick="Vypocitej()">Vypočítat</button>
+    
+    <!-- Prázdný odstavec, který funguje jako "nástěnka". Má unikátní ID "vysledek", aby JavaScript přesně věděl, kam má zapsat finální čísla. -->
+    <p id="vysledek"></p> 
+
+    <!-- Zde začíná samotný programovací jazyk, který se stará o logiku -->
+    <script>
+        // Deklarace funkce. Vše mezi složenými závorkami { } se provede až ve chvíli, kdy uživatel klikne na tlačítko.
+        function Vypocitej() {
+            
+            // KROK 1: NAČTENÍ HODNOT
+            // document.getElementById("d1") -> Sáhne do stránky a chytne políčko s ID d1.
+            // .value -> Vezme text, který do políčka uživatel vyťukal.
+            // parseFloat() -> Obalí to celé a převede načtený text na desetinné číslo, aby s ním šlo počítat (jako float v C++).
+            // let d1 = -> Výsledek uloží do nové proměnné d1, kterou drží v paměti.
+            let d1 = parseFloat(document.getElementById("d1").value);
+            let d2 = parseFloat(document.getElementById("d2").value);
+            let h = parseFloat(document.getElementById("h").value);
+
+            // KROK 2: PŘÍPRAVA MÍSTA PRO VÝSLEDEK
+            // JavaScript si najde prázdný odstavec <p id="vysledek"> a uloží si na něj "ukazatel" do proměnné vysledek_box, aby se s ním dál snadno pracovalo.
+            let vysledek_box = document.getElementById("vysledek");
+            
+            // KROK 3: MATEMATIKA - PŘEVOD PRŮMĚRŮ NA POLOMĚRY
+            // Vzorce vyžadují poloměr, takže zadané průměry podělíme dvěma.
+            let r1 = d1 / 2;
+            let r2 = d2 / 2;
+
+            // KROK 4: VÝPOČET STRANY KUŽELE PRO POVRCH (Pythagorova věta: c^2 = a^2 + b^2)
+            // Math.pow(x, 2) umocní x na druhou.
+            // Math.sqrt(x) udělá z čísla x druhou odmocninu.
+            // s = odmocnina z (výška na druhou + rozdíl poloměrů na druhou)
+            let s = Math.sqrt(Math.pow(h, 2) + Math.pow(r1 - r2, 2));
+
+            // KROK 5: VÝPOČET OBJEMU
+            // Math.PI je vestavěná konstanta pro Ludolfovo číslo (3.14159...).
+            let objem = (1/3) * Math.PI * h * (r1 * r1 + r1 * r2 + r2 * r2);
+            
+            // KROK 6: VÝPOČET POVRCHU
+            // Sčítáme tři části: dolní podstavu (pi*r1^2) + horní podstavu (pi*r2^2) + plášť (pi*(r1+r2)*s)
+            let povrch = Math.PI * Math.pow(r1, 2) + Math.PI * Math.pow(r2, 2) + Math.PI * (r1 + r2) * s;
+
+            // KROK 7: VÝPIS NA STRÁNKU
+            // .innerHTML = přepíše obsah dříve prázdného odstavce naším novým textem.
+            // Pomocí plus (+) slepujeme pevný text v uvozovkách (např. "Objem (V): ") a proměnné.
+            // Značka <br> způsobí odřádkování přímo v HTML.
+            // .toFixed(2) zajistí, že se ta dlouhá čísla hezky matematicky zaokrouhlí na 2 desetinná místa.
+            vysledek_box.innerHTML = 
+                "Objem (V): " + objem.toFixed(2) + " <br><br>" +
+                "Povrch (S): " + povrch.toFixed(2);
+        }
+    </script>
+</body>
+</html>
